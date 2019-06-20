@@ -1,0 +1,58 @@
+import java.util.*;
+class DynamicArray<T> {
+    
+    Object[] data;
+    int size;
+    
+    public DynamicArray() {
+        size=0;
+        data=new Object[1];
+    }
+    
+    public int getsize() {
+        return data.length;
+    }
+    
+    public T get(int index) {
+        return (T)data[index];
+    }
+    
+    public void put(T element) {
+        ensureCapacity(size+1);
+        data[size++]=element;
+    }
+    
+    public void ensureCapacity(int minCapacity) {
+        int oldCapacity = getsize();
+        if(minCapacity>oldCapacity) {
+            int newCapacity = oldCapacity*2;
+            if(newCapacity<minCapacity)
+            newCapacity=minCapacity;
+            data=Arrays.copyOf(data,newCapacity);
+        }
+    }
+    
+    
+}    
+public class Main {
+    public static void main(String args[]) {
+        
+        
+        DynamicArray<Integer> da = new DynamicArray<Integer>();
+        da.put(11);
+        System.out.println("size:"+da.getsize());
+         da.put(12);
+        System.out.println("size:"+da.getsize());
+         da.put(13);
+        System.out.println("size:"+da.getsize());
+        da.put(14);
+        da.put(15);
+        
+        for(int i=0;i<da.getsize();i++){
+         System.out.println(da.get(i));   
+        }
+        
+        
+    }
+}
+
