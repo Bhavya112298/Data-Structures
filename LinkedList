@@ -1,0 +1,222 @@
+class Node {
+    int value;
+    Node next;
+    
+    Node(int value, Node next) {
+        this.value = value;
+        this.next = next;
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
+
+
+class MyLinkedList {
+	
+	
+	Node head;                 //initially only head present
+	
+	MyLinkedList() {
+		head = null;              //default constructor where head is null initially
+	}
+	
+	
+//-----------------------------------------------------------------------------------	
+	
+	public void insert_at_beg(int value) {
+		
+		Node newNode = new Node(value,null);  //create
+		
+		if(head==null)
+			head = newNode;   
+		
+		else {                           // set newNode's next
+			newNode.next = head;
+			head = newNode;            //set head
+			}
+			
+		}
+	
+//--------------------------------------------------------------------------------	
+	public void insert_after(  Node prevNode,  int value ) {
+		
+		if(prevNode == null){
+			System.out.println("previous node cannot be null");   //create  
+		    return;
+		}
+
+
+        
+		else {
+			Node newNode = new Node( value, null);
+			
+			newNode.next = prevNode.next;                 // set newNode's next
+			prevNode.next = newNode;                      //set prevNode's next 
+		}	
+	
+}
+	
+//-----------------------------------------------------------------------------------	
+	public void insert_at_end(int value) {
+		
+		Node newNode = new Node(value,null); //create
+		
+		if(head==null) {
+			head=newNode;
+			newNode.next = null; //linked list empty
+		}
+		
+		else{
+			Node last = head;
+			
+			while(last.next!=null){      //finding last node
+				last = last.next;        // last.next is of type Node only
+			}
+			
+			last.next = newNode;
+			newNode.next = null;
+		}
+	}
+	
+//---------------------------------------------------------------------------------------	
+	void printLinkedList() {
+	    Node currentNode = head;
+	    while(currentNode!= null) {
+	        System.out.print(currentNode.value+" ");
+	        currentNode = currentNode.next;
+	    }
+	    
+	}
+	
+	
+
+//---------------------------------------------------------------------------------------
+
+void insert_at_mid(int value) {
+    int size = find_length();
+    int count =1;
+    
+    
+    if(size%2==0) {                  //for even length
+      Node currentNode = head;  
+    while(currentNode!=null && count<size/2) {
+        currentNode = currentNode.next;
+        count++;
+    }   
+    insert_after(currentNode,value);
+        
+    }
+    
+    else {
+         Node currentNode = head; 
+         while(currentNode!=null && count<(size+1)/2) {
+        currentNode = currentNode.next;
+        count++;
+    }   
+    insert_after(currentNode,value);
+        
+    }
+    
+}
+
+
+
+//---------------------------------------------------------------------------------------
+int find_length() {
+    Node currentNode = head;
+    int length = 0;
+    while(currentNode!=null) {
+        currentNode = currentNode.next;
+    length++;
+    
+    }
+    return length;
+}
+
+
+//---------------------------------------------------------------------------------------
+void delete_at_beg() {
+    
+    head = head.next;
+}
+
+//---------------------------------------------------------------------------------------
+
+void delete_at_end() {
+    if(head ==null) {
+        System.out.println("nothing to delete");
+    }
+    
+    else if(head.next ==null )
+    head = null;
+    
+    
+    else {
+        Node secondLastNode = head;
+        while(secondLastNode.next.next!=null) {
+            secondLastNode = secondLastNode.next;
+        }
+       secondLastNode.next = null; 
+    }
+}
+//---------------------------------------------------------------------------------------
+
+void delete_after(Node prevNode) {
+    
+		if(prevNode == null){
+			System.out.println("previous node cannot be null");   //create  
+		    return;
+		}
+
+
+        
+		else {
+		    Node currentNode = head;
+			while(currentNode!=prevNode) {
+			    currentNode=currentNode.next;
+			   
+			}
+			Node nextNode = currentNode.next;
+			
+			prevNode.next = nextNode.next;
+			                    
+		}	
+	
+}
+    
+
+
+}
+//---------------------------------------------------------------------------------------
+void delete_at_mid() {
+    int size = find_length();
+    
+}
+//-----------------------------------------------------------------------------------------------------------------
+
+
+class Main{
+    public static void main(String args[]) {
+        MyLinkedList ml = new MyLinkedList();
+        
+        ml.insert_at_beg(5);
+        ml.insert_at_beg(6);
+        ml.insert_at_beg(4);
+        ml.insert_at_end(2);
+        ml.insert_at_end(3);
+        ml.insert_at_mid(100);
+        ml.printLinkedList();
+        System.out.println();
+        ml.delete_after(ml.head.next.next);
+         ml.printLinkedList();
+        
+   
+       
+       
+        
+    }
+}
+
