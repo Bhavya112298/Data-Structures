@@ -3,24 +3,34 @@ class DynamicArray<T> {
     
     Object[] data;
     int size;
-    
+//-----------------------------------------------------------------------    
     public DynamicArray() {
         size=0;
         data=new Object[1];
     }
     
+//----------------------------------------------------------------------------    
+    
+    
     public int getsize() {
         return data.length;
     }
+    
+  //------------------------------------------------------------------------  
     
     public T get(int index) {
         return (T)data[index];
     }
     
+ //--------------------------------------------------------------------------   
+    
     public void put(T element) {
         ensureCapacity(size+1);
         data[size++]=element;
     }
+    
+    
+//---------------------------------------------------------------------    
     
     public void ensureCapacity(int minCapacity) {
         int oldCapacity = getsize();
@@ -31,7 +41,7 @@ class DynamicArray<T> {
             data=Arrays.copyOf(data,newCapacity);
         }
     }
-    
+ //----------------------------------------------------------------------------------   
     
 }    
 public class Main {
