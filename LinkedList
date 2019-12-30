@@ -1,3 +1,6 @@
+import java.util.*;
+
+    
 class Node {
     int value;
     Node next;
@@ -187,14 +190,36 @@ void delete_after(Node prevNode) {
 	
 }
     
-
+void delete_at_mid() {
+   int size = find_length();
+    int count =1;
+    
+    
+    if(size%2==0) {                  //for even length
+      Node currentNode = head;  
+    while(currentNode!=null && count<size/2) {
+        currentNode = currentNode.next;
+        count++;
+    }   
+    delete_after(currentNode);
+        
+    }
+    
+    else {
+         Node currentNode = head; 
+         while(currentNode!=null && count<(size)/2) {
+        currentNode = currentNode.next;
+        count++;
+    }   
+    delete_after(currentNode);
+        
+    }
+    
+}
 
 }
 //---------------------------------------------------------------------------------------
-void delete_at_mid() {
-    int size = find_length();
-    
-}
+
 //-----------------------------------------------------------------------------------------------------------------
 
 
@@ -208,10 +233,21 @@ class Main{
         ml.insert_at_end(2);
         ml.insert_at_end(3);
         ml.insert_at_mid(100);
+       
         ml.printLinkedList();
+        ml.delete_at_mid();
         System.out.println();
-        ml.delete_after(ml.head.next.next);
-         ml.printLinkedList();
+          ml.printLinkedList();
+          System.out.println();
+        ml.insert_at_mid(11);
+        ml.insert_at_mid(99);
+        System.out.println();
+          ml.printLinkedList();
+          System.out.println();
+      ml.delete_at_mid();
+        ml.printLinkedList();
+       
+       
         
    
        
@@ -219,4 +255,6 @@ class Main{
         
     }
 }
+
+
 
