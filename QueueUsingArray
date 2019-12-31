@@ -1,0 +1,73 @@
+class MyQueue {
+   int front,rear,a[],size;
+   
+   MyQueue(int size) {
+       this.size = size;
+       a = new int[this.size];
+       front = -1;
+       rear = -1;
+   }
+   
+   
+   void insert(int value){
+       if(rear==size-1){
+           System.out.println("queue is full!");
+       }
+       else{
+       rear = rear+1;
+       a[rear] = value;
+       if(front==-1)
+       front = 0;
+       
+       }
+      
+   }
+ //----------------------------------------------------------------------------------------------  
+   int remove() {
+       int temp = -1;
+       if(front==-1||front>rear){
+           System.out.println("queue empty!!");
+       }
+       else {
+      temp = a[front];
+       front = front+1;
+       
+       }
+       
+       return temp;
+   }
+   
+ //------------------------------------------------------------------  
+    
+void traverse(){
+    int temp = front;
+    while(temp<=rear){
+        System.out.print(a[temp]+" ");
+        temp = temp+1;
+    }
+    System.out.println();
+}    
+    
+}
+
+
+ class Main {
+    public static void main(String args[]) {
+        
+     MyQueue mq = new MyQueue(5);
+     mq.insert(1);
+     mq.insert(2);
+     mq.insert(3);
+     mq.insert(4);
+     mq.insert(5);
+     mq.traverse();
+     mq.remove();
+     mq.traverse();
+     mq.remove();
+     mq.remove();
+     mq.traverse();
+     
+        
+        
+    }
+}
