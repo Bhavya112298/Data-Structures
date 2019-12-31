@@ -45,9 +45,12 @@ class MyStack{
       System.out.println();  
     }
     
+//-------------------------------------------------------------------------------------    
+void no_of_elements(){
+    System.out.println("no. of elements are: "+(top+1));
+}
     
-    
-
+//-----------------------------------------------------------------------------------
     
     
 }
@@ -75,6 +78,7 @@ class Main {
          st.traverse();
          st.pop();
          st.traverse();
+         st.no_of_elements();
         
     }
 }
