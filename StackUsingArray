@@ -1,0 +1,80 @@
+class MyStack{
+    int a[],size,top;
+ //-----------------------------------------------------------------------------    
+    MyStack(int s){
+        size =s;            
+        a = new int[size];         //allocated blocks based on user's given size
+        top = -1;                 //stack empty
+        
+    }
+    
+
+ //-----------------------------------------------------------------------------------   
+    void push(int value) {
+        if(top==size-1){                                    //stack overflow
+            System.out.println("stack full cannot add more!");
+            
+        }
+        else{
+        top = top+1;
+        a[top]=value;
+        }
+    }
+    
+//---------------------------------------------------------------------------------    
+     
+    int pop() {
+        int temp=-1;
+        if(top==-1){                                    //stack underflow
+            System.out.println("stack empty cannot remove elements!");
+            return temp;
+        }
+        else{
+        temp = a[top];
+       top = top - 1;
+        }
+        return temp;
+    }
+//-------------------------------------------------------------------------------------    
+    void traverse() {
+        int var = top;   // dont change actual top value
+        while(var!=-1){
+            System.out.print(a[var]+" ");
+            var = var-1;
+        }
+      System.out.println();  
+    }
+    
+    
+    
+
+    
+    
+}
+    
+
+
+
+
+
+
+
+class Main {
+    public static void main(String[] args) {
+        
+        MyStack st = new MyStack(5);
+        st.push(1);
+        st.push(2);
+        st.push(3);
+        st.push(4);
+        st.traverse();
+        
+        st.pop();
+         st.traverse();
+         st.push(5);
+         st.traverse();
+         st.pop();
+         st.traverse();
+        
+    }
+}
