@@ -1,0 +1,133 @@
+import java.util.*;
+
+class Node{
+    int value;
+    Node next;
+    Node(int data){
+        this.value = data;
+        
+    }
+}
+
+class CircularLinkedList {
+    Node head,last;
+    
+    CircularLinkedList(){
+        head= null;
+        last = null;
+    }
+    
+    void printCircularLinkedList(){
+        Node currentNode = head;
+        if(currentNode == null)
+        System.out.println();
+        else{
+        do{
+            System.out.print(currentNode.value+" ");
+            currentNode = currentNode.next;
+        }
+        while(currentNode!=head);
+        System.out.println();
+    }}
+    
+    
+    void insert_at_beg(int data){
+        Node newNode = new Node(data);
+        
+        if(head==null){
+            head = newNode;
+            head.next = head;
+            last = head;
+        }
+        else{
+            newNode.next = head;
+            head = newNode;
+            last.next = head;
+        }
+    }
+    
+    void insert_at_end(int data) {
+        Node newNode =  new Node(data);
+        if(head==null){
+            head = newNode;
+            head.next = head;
+            last = head;
+        }
+        
+        else{
+            last.next = newNode;
+            newNode.next = head;
+            last = newNode;
+        }
+    }
+    
+    int delete_at_beg(){
+        if(head==null)
+        return -1;
+        
+        else if(head.next==head){
+            int pop = head.value;
+            head=null;
+            last = null;
+            return pop;
+        }
+        
+        else{
+            int pop = head.value;
+            head = head.next;
+            last.next = head;
+            return pop;
+        }
+        
+    }
+    
+    int delete_at_end() {
+        if(head==null)
+        return -1;
+        
+        else if(head.next==head){
+            int pop = head.value;
+            head=null;
+            last = null;
+            return pop;
+        }
+        
+        else {
+            Node newLast = head;
+            while(newLast.next!=last){
+                newLast = newLast.next;
+                
+            }
+            int pop = last.value;
+            last = newLast;
+            last.next = head;
+            return pop;
+            
+        }}
+        
+        
+    
+}
+
+class Main{
+    public static void main(String args[]) {
+        CircularLinkedList cl = new CircularLinkedList();
+        cl.insert_at_end(1);
+        cl.printCircularLinkedList();
+        cl.insert_at_beg(3);
+        cl.printCircularLinkedList();
+        cl.insert_at_end(6);
+        cl.printCircularLinkedList();
+        cl.insert_at_end(7);
+        cl.printCircularLinkedList();
+       
+        cl.delete_at_end();
+         cl.printCircularLinkedList();
+          cl.delete_at_end();
+         cl.printCircularLinkedList();
+          cl.delete_at_end();
+         cl.printCircularLinkedList();
+          cl.delete_at_end();
+         cl.printCircularLinkedList();
+         
+      }}
